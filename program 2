@@ -1,0 +1,265 @@
+
+
+
+// write a program using array to read n number.
+//DISPLAY NUMBER IN REVERSE ORDER
+// WHEN ARRAY IS EMPTY SHOW ARRAY IS UNDERFOLW
+// WHEN ARRAY IS FULL SHOW ARRAY IS OVERFLOW.
+//SHOW TOP OF THE ARRAY(STACK) AND NUMBER OF ELEMENTS IN ARRAY(STACK). 
+  
+
+#include<stdio.h>
+int main() 
+{
+ int value[5],i;
+ int sp=-1, *top, *start;
+ char option;
+ start=value;
+ top=NULL;
+  printf("\n\n**************** PROGRAM TO IMPLEMENT Stack USING array***************\n\n");
+
+ //SHOW STACK(ARRAY) STATUS
+ 
+ if(sp==-1&&top==NULL)
+ 
+ printf("\n\n LINE1 Stack is empty and Stack is under flow\n");
+ //Put one elemet in stack say 5
+ printf("\n\n LINE2 Enter the number to add in stack:");
+ scanf("%d",value);
+ sp++; 
+ start=value;
+  top=value;
+ printf("\n LINE3 Start hold Address %d and value %d\n", start, *start);
+printf(" \nLINE4 Top hold Address %d and value %d and numbr of element in stack is %d\n", top, *top, sp+1);
+ 
+ 
+ //DISPLAY STACK STATUS AND TOP ELEMENT
+ if(sp!=-1&&*top!=-1)
+ {
+ 	printf("\n\n LINE5 Stack is not empty\n");
+ 	printf("\n\n LINE6 The number of element in the stack is %d and the Top of the stack contains %d", sp+1, *top );
+ }
+ //printf("\nDo you want to add more elements Stack(A) or remove elements from stack(R)) or Press (Q) to Exit:");
+ scanf("%c", &option);
+
+ while (option!='Q'&&option!='q')
+{
+
+ if(sp+1<5)
+ {
+ 
+  if(option=='A'||option=='a')
+ {
+ sp++;	
+ printf("\n LINE7 Enter the number to add in stack:");
+ scanf("%d",value+sp);
+ top++;
+ printf("\n\n LINE8 Start hold Address:  %d and value :%d\n", start, *start);
+printf("\n\n LINE9 Top hold Address :%d and value: %d\n and number of element is %d", top, *top, sp+1);
+ }
+ if(option=='R'||option=='r')
+ {
+ printf("\n\n LINE10 The number remove from stack: %d", *top);
+ sp--; 
+ top--;
+ printf("\n\n LINE11 Start hold Address:  %d and value: %d\n", start, *start);
+printf("\n LINE12 Top hold Address : %d and value : %d\n", top, *top);
+ }
+}
+ else//if(sp>=10)
+{
+printf("\n\n\n LINE14 Stack is FULL\n");
+break;
+}
+printf("\n\n LINE13 Do you want to add more elements Stack(A) or remove elements from stack(R)) or Press (Q) to Exit:");
+ scanf("%c", &option);
+}
+ //if(sp>=10)
+//printf("\n\n\n LINE14 Stack is FULL\n");
+
+  return 0;
+}
+
+
+/// INSER ONE ELELEMNT AT BEGIN, END AND MIDDLE OF A LIST USING ARRAY////////
+
+#include<stdio.h>
+int main() 
+{
+  int value[10],n,i,nw,pos;
+ printf("Enter number of  integers:");
+ scanf("%d",&n);
+ printf("Enter  integers values :\n");
+  // taking input and storing it in an array
+  for(i=0;i<n;++i)
+  {
+     scanf("%d",&value[i]);
+  }
+  printf("Displaying integers values:\n");
+  // printing elements of an array
+  for(i=0;i<n;++i) 
+  {
+     printf("%d\n",value[i]);
+  
+  }
+   printf("Enter a new number to list of   integers:");
+
+ scanf("%d",&nw);
+  printf("Enter the position of new number in the list between 1 to %d:", n+1);
+  scanf("%d",&pos);
+ //Rearrange array
+ if(pos==1)
+ {
+ for (i=n;i>=0;i--)
+ value[i]=value[i-1];
+ 	value[0]=nw;
+ }
+// else if (pos>1&&pos<=n)
+ //{
+ //here the value are to be shift one position to the right and the blank position contains the nw value//
+ 	
+ //}
+ else
+ value[n]=nw;
+ // printing elements of an array
+  
+  
+ printf("Enter a new number to list of   integers:\n");
+
+  for(i=0;i<n+1;++i) 
+  {
+     printf("%d\n",value[i]);
+  }
+  
+ 
+  return 0;
+}
+
+
+
+
+
+
+
+//*****  Array implimentation Traversal, LINEAR SEARCH*******//
+
+
+#include <stdio.h>
+int main()
+{
+int array[100], search, c, n;
+printf("Enter number of elements in array\n");
+scanf("%d", &n);
+printf("Enter %d integer(s)\n", n);
+for (c = 0; c < n; c++)
+scanf("%d", &array[c]);
+printf("Enter a number to search\n");
+scanf("%d", &search);
+for (c = 0; c < n; c++)
+{
+if (array[c] == search)    /* If required element is found */
+{
+ printf("%d is present at location %d.\n", search, c+1);
+ break;
+}
+}
+if (c == n)
+printf("%d isn't present in the array.\n", search);
+return 0;
+}
+
+
+
+
+
+
+
+
+/PROGRAM TO CREATE NODE AND TRAVERSAL OPERATION TO DISPLAY DATA/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node 
+{
+    int num;                        //Data of the node
+    struct node *nextptr;           //Address of the next node
+}*stnode;
+
+
+void createNodeList(int n); // function to create the list
+void displayList();         // function to display the list
+
+int main()
+{
+    int n;
+    printf("\n\n Linked List : To create and display Singly Linked List :\n");
+                printf("-------------------------------------------------------------\n");
+                
+    printf(" Input the number of nodes : ");
+    scanf("%d", &n);
+    createNodeList(n);
+    printf("\n Data entered in the list : \n");
+    displayList();
+    return 0;
+}
+void createNodeList(int n)
+{
+    struct node *fnNode, *tmp; 
+    int num, i;
+    stnode = (struct node *)malloc(sizeof(struct node));
+
+    if(stnode == NULL) //check whether the fnnode is NULL and if so no memory allocation
+    {
+        printf(" Memory can not be allocated.");
+    }
+    else
+    {
+// reads data for the node through keyboard
+
+        printf(" Input data for node 1 : ");
+        scanf("%d", &num);
+        stnode->num = num;      
+        stnode->nextptr = NULL; // links the address field to NULL
+        tmp = stnode;
+// Creating n nodes and adding to linked list
+        for(i=2; i<=n; i++)
+        {
+         fnNode = (struct node *)malloc(sizeof(struct node));
+         if(fnNode == NULL)
+         {
+         printf(" Memory can not be allocated.");
+         break;
+         }
+         else
+           {
+           printf(" Input data for node %d : ", i);
+           scanf(" %d", &num);
+ 
+           fnNode->num = num;      // links the num field of fnNode with num
+           fnNode->nextptr = NULL; // links the address field of fnNode with NULL
+ 
+           tmp->nextptr = fnNode; // links previous node i.e. tmp to the fnNode
+           tmp = tmp->nextptr; 
+           }
+        }
+    }
+}
+void displayList()
+{
+    struct node *tmp;
+    if(stnode == NULL)
+    {
+        printf(" List is empty.");
+    }
+    else
+    {
+        tmp = stnode;
+        while(tmp != NULL)
+        {
+            printf(" Data = %d\n", tmp->num);       // prints the data of current node
+            tmp = tmp->nextptr;                     // advances the position of current node
+        }
+    }
+} 
+
